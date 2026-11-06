@@ -1,0 +1,29 @@
+name: PR Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+
+  job-a:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job A"
+
+  job-b:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job B"
+
+  job-c:
+    needs: [job-a, job-b]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job C"
+
+  job-d:
+    needs: job-c
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job D"
